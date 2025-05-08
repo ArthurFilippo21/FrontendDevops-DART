@@ -21,9 +21,81 @@
             </ul>
         </nav>
     </header>
-    <main>
+    <main class="grid-container">
+      <div class="grid-x grid-margin-x" style="min-height: 400px;">
+        
+        <div class="cell small-12 medium-3">
+          <div class="button-group stacked">
+            <button class="button" onclick="mostrarOpcoes('parede')">PAREDE</button>
+            <button class="button" onclick="mostrarOpcoes('piso')">PISO</button>
+            <button class="button" onclick="mostrarOpcoes('madeira')">MADEIRA</button>
+            <button class="button" onclick="mostrarOpcoes('metal')">METAL</button>
+            <button class="button" onclick="mostrarOpcoes('vedacao')">VEDAÇÃO</button>
+          </div>
+        </div>
+    
+        <div class="cell small-12 medium-9">
+          <div id="opcoes-container" class="callout secondary" style="min-height: 300px;">
+            <div class="opcoes" id="parede" style="display: none;">
+              <h5>Opções para Parede:</h5>
+              <ul>
+                <li onclick="mostrarDica(this)" data-dica="Tinta acrílica é ideal para ambientes internos.">Interno</li>
+                <li onclick="mostrarDica(this)" data-dica="Use tinta resistente à água para áreas externas.">Externo</li>
+                <li onclick="mostrarDica(this)" data-dica="Gesso exige tinta com boa aderência e cobertura.">Gesso</li>
+                <li onclick="mostrarDica(this)" data-dica="A massa corrida é indicada para interiores secos.">Massa corrida / acrílica</li>
+                <li onclick="mostrarDica(this)" data-dica="Para mofo, use tintas com fungicida.">Mofo</li>
+                <li onclick="mostrarDica(this)" data-dica="Evite tinta comum em áreas com umidade alta.">Umidade</li>
+                <li onclick="mostrarDica(this)" data-dica="Tintas brilhantes são fáceis de limpar.">Brilhante</li>
+              </ul>
+            </div>
+    
+            <div class="opcoes" id="piso" style="display: none;">
+              <h5>Opções para Piso:</h5>
+              <ul>
+                <li onclick="mostrarDica(this)" data-dica="Tinta epóxi é ideal para resistência e durabilidade.">Epóxi</li>
+                <li onclick="mostrarDica(this)" data-dica="Tinta antiderrapante aumenta a segurança em pisos molhados.">Antiderrapante</li>
+              </ul>
+            </div>
 
+
+    
+            <!-- Outras categorias aqui -->
+
+
+    
+            <div id="dica" class="callout success" data-closable style="display: none;">
+              <span id="dica-texto"></span>
+              <button class="close-button" aria-label="Fechar dica" type="button" data-close onclick="fecharDica()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
+    
+    <script>
+      function mostrarOpcoes(id) {
+        document.querySelectorAll('.opcoes').forEach(div => {
+          div.style.display = 'none';
+        });
+        document.querySelector(`#${id}`).style.display = 'block';
+        fecharDica();
+      }
+    
+      function mostrarDica(el) {
+        const dica = document.getElementById('dica');
+        const texto = el.getAttribute('data-dica');
+        document.getElementById('dica-texto').textContent = texto;
+        dica.style.display = 'block';
+      }
+    
+      function fecharDica() {
+        document.getElementById('dica').style.display = 'none';
+      }
+    </script>
+    
+    
     <footer>
         <div class="grid-x grid-padding-x align-center">
           <div class="cell medium-3">
