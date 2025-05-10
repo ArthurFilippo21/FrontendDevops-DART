@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D'art</title>
+    <title>D'art - Produtos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
@@ -23,47 +23,99 @@
         <div class="grid-x">
             <img class="avatar" src="./images/avatar.png"/>
             <div class="btnEC">
-                <a class="button tiny expanded secondary" href="#">Entrar</a>
-                <a class="button tiny expanded secondary" href="#">Cadastrar-se</a>
+                <a class="button tiny expanded secondary" href="login.html">Entrar</a>
+                <a class="button tiny expanded secondary" href="cadastrar-se.html">Cadastrar-se</a>
             </div>
         </div>
     </header>
     <main>
-        <section id="produtos">
-            <h1>Nossos Produtos</h1>
-            
+        <section id="produtos" class="produtos-section">
+            <h2 class="produtos-section-title">Nossos Produtos</h2>
+            <div class="grid-x grid-margin-x align-center">
+                <div class="cell medium-6">
+                    <input type="text" id="search-bar" class="search-bar" placeholder="Buscar por marca" oninput="applyFilters()">
+                </div>
+            </div>
+            <div class="grid-x grid-margin-x">
+                <aside class="cell medium-3 filters-sidebar">
+                    <div id="filters-content" class="filters-content">
+                        <h3>Filtros</h3>
+                        <div class="filter-group">
+                            <label for="filter-marca">Marca</label>
+                            <select id="filter-marca" class="filter-select" onchange="applyFilters()">
+                                <option value="">Todas</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filter-acabamento">Acabamento</label>
+                            <select id="filter-acabamento" class="filter-select" onchange="applyFilters()">
+                                <option value="">Todos</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filter-unidade">Unidade de Tamanho</label>
+                            <select id="filter-unidade" class="filter-select" onchange="applyFilters()">
+                                <option value="">Todas</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filter-cor">Cor/Base</label>
+                            <select id="filter-cor" class="filter-select" onchange="applyFilters()">
+                                <option value="">Todas</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Faixa de Preço (R$)</label>
+                            <div class="price-range">
+                                <input type="number" id="filter-price-min" class="filter-price" placeholder="Mín" min="0" oninput="applyFilters()">
+                                <input type="number" id="filter-price-max" class="filter-price" placeholder="Máx" min="0" oninput="applyFilters()">
+                            </div>
+                        </div>
+                        <button id="clear-filters">Limpar</button>
+                    </div>
+                </aside>
+                <div class="cell medium-9 products-container">
+                    <table class="paints-table unstriped">
+                        <thead class="paints-table-head">
+                            <tr>
+                                <th class="paints-table-head-cell">Marca</th>
+                                <th class="paints-table-head-cell">Descrição</th>
+                                <th class="paints-table-head-cell">Acabamento</th>
+                                <th class="paints-table-head-cell">Unidade</th>
+                                <th class="paints-table-head-cell">Cor/Base</th>
+                                <th class="paints-table-head-cell">Valor (R$)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paintsBody" class="paints-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
         </section>
     </main>
     <footer>
         <div class="grid-x grid-padding-x align-center">
-          <div class="cell medium-3">
-            <h6 style="color: #009900;">Horário de atendimento:</h6>
-            <p><small>Seg. á Sexta-feira das 08h ás 18:00h <br> Sábado das 08h às 13:00h</small></p>
-          </div>
-          <div class="cell medium-6 text-center">
-            <ul class="menu align-center">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="produtos.html">Produtos</a></li>
-              <li><a href="cores.html">Cores</a></li>
-              <li><a href="dicas.html">Dicas</a></li>
-              <li><a href="sobre.html">Sobre nós</a></li>
-            </ul>
-            <br/>
-            <p>&copy; 2025 D'art Tintas</p>
-          </div>
-          <div class="cell medium-3 text-left">
-            <a href="https://www.instagram.com/darttintas" target="_blank" style="color: #fff;">
-              <i class="fab fa-instagram"></i>&#8194;@darttintas<br>
-            </a>
-            <a href="mailto:darttintas@gmail.com" target="_blank" style="color: #fff;">
-              <i class="fas fa-envelope"></i>&#8194;darttintas@gmail.com<br>
-            </a>
-            <a href="https://wa.me/5546056220" target="_blank" style="color: #fff;">
-              <i class="fab fa-whatsapp"></i>&#8194;(11) 4605-6220
-            </a>
-          </div>
+            <div class="cell medium-3">
+                <h6 style="color: #009900;">Horário de atendimento:</h6>
+                <p><small>Seg. á Sexta-feira das 08h ás 18:00h <br> Sábado das 08h às 13:00h</small></p>
+            </div>
+            <div class="cell medium-6 text-center">
+                <br/>
+                <p>© 2025 D'art Tintas</p>
+            </div>
+            <div class="cell medium-3 text-left">
+                <a href="https://www.instagram.com/darttintas" target="_blank" style="color: #fff;">
+                    <i class="fab fa-instagram"></i> @darttintas<br>
+                </a>
+                <a href="mailto:darttintas@gmail.com" target="_blank" style="color: #fff;">
+                    <i class="fas fa-envelope"></i> darttintas@gmail.com<br>
+                </a>
+                <a href="https://wa.me/5546056220" target="_blank" style="color: #fff;">
+                    <i class="fab fa-whatsapp"></i> (11) 4605-6220
+                </a>
+            </div>
         </div>
-      </footer>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
 </body>
 </html>
