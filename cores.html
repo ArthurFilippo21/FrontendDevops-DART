@@ -20,9 +20,58 @@
                 <li><a href="sobre.html">Sobre Nós</a></li>
             </ul>
         </nav>
+        <div class="grid-x">
+            <img class="avatar" src="./images/avatar.png"/>
+            <div class="btnEC">
+                <a class="button tiny expanded secondary" href="login.html">Entrar</a>
+                <a class="button tiny expanded secondary" href="cadastrar-se.html">Cadastrar-se</a>
+            </div>
+        </div>
     </header>
-    <main>
-       
+    <main id="cores">
+      <h3 style="margin: 40px 0 0 80px;">Comparativo de cores</h3>
+      <hr>
+      <section class="grid-container" style="margin-top: 80px;">
+        <div class="grid-x imgs">
+          <div class="cell small-5">
+            <img id="sala1" class="sala" src="./images/img-sala.png" alt="sala-de-estar1">
+          </div>
+
+          <div class="vertical-divider"><br><br><br><br><br><br><br><br><br><br></div>
+
+          <div class="cell small-5">
+            <img id="sala2" class="sala" src="./images/img-sala.png" alt="sala-de-estar2">
+          </div>
+        </div>
+      </section>
+
+      <section class="grid-container" style="margin-top: 80px;">
+        <h3><i class="fa-solid fa-palette"></i>&#8194;Selecione uma cor para as imagens</h3>
+        <hr>
+        <div class="grid-x imgs" style="margin-bottom: 80px;">
+          <div class="cell small-5">
+            <div id="color-display1" class="color-grid"></div>
+
+            <div style="margin-top: 30px;">
+              <ul class="pagination text-center" role="navigation" aria-label="Pagination">
+                <li class="pagination-previous"><a onclick="previousPage1()">« Anterior</a></li>
+                <li class="pagination-next"><a onclick="nextPage1()">Próxima »</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="cell small-5">
+            <div id="color-display2" class="color-grid"></div>
+
+            <div style="margin-top: 30px;">
+              <ul class="pagination text-center" role="navigation" aria-label="Pagination">
+                <li class="pagination-previous"><a onclick="previousPage2()">« Anterior</a></li>
+                <li class="pagination-next"><a onclick="nextPage2()">Próxima »</a></li>
+              </ul>
+            </div>
+          </div>
+        
+        </div>
+      </section>
     </main>
     <footer>
         <div class="grid-x grid-padding-x align-center">
@@ -31,14 +80,6 @@
             <p><small>Seg. á Sexta-feira das 08h ás 18:00h <br> Sábado das 08h às 13:00h</small></p>
           </div>
           <div class="cell medium-6 text-center">
-            <ul class="menu align-center">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="produtos.html">Produtos</a></li>
-              <li><a href="cores.html">Cores</a></li>
-              <li><a href="dicas.html">Dicas</a></li>
-              <li><a href="sobre.html">Sobre nós</a></li>
-            </ul>
-            <br/>
             <p>&copy; 2025 D'art Tintas</p>
           </div>
           <div class="cell medium-3 text-left">
@@ -54,6 +95,8 @@
           </div>
         </div>
       </footer>
-    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js" crossorigin="anonymous"></script>
+      <script src="./script.js"></script>
 </body>
 </html>
