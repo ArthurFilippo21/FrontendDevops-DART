@@ -30,67 +30,56 @@
     </header>
     <main>
         <section id="produtos" class="produtos-section">
-            <h2 class="produtos-section-title">Nossos Produtos</h2>
-            <div class="grid-x grid-margin-x align-center">
-                <div class="cell medium-6">
-                    <input type="text" id="search-bar" class="search-bar" placeholder="Buscar por marca" oninput="applyFilters()">
+    <h2 class="produtos-section-title">Nossos Produtos</h2>
+    <div class="grid-x grid-margin-x align-center">
+        <div class="cell medium-6">
+            <input type="text" id="search-bar" class="search-bar" placeholder="Buscar por marca" oninput="applyFilters()">
+        </div>
+    </div>
+    <div class="grid-x grid-margin-x">
+        <aside class="cell medium-3 filters-sidebar">
+            <div id="filters-content" class="filters-content">
+                <h3>Filtros</h3>
+                <div class="filter-group">
+                    <label for="filter-marca">Marca</label>
+                    <select id="filter-marca" class="filter-select" onchange="applyFilters()">
+                        <option value="">Todas</option>
+                    </select>
                 </div>
-            </div>
-            <div class="grid-x grid-margin-x">
-                <aside class="cell medium-3 filters-sidebar">
-                    <div id="filters-content" class="filters-content">
-                        <h3>Filtros</h3>
-                        <div class="filter-group">
-                            <label for="filter-marca">Marca</label>
-                            <select id="filter-marca" class="filter-select" onchange="applyFilters()">
-                                <option value="">Todas</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <label for="filter-acabamento">Acabamento</label>
-                            <select id="filter-acabamento" class="filter-select" onchange="applyFilters()">
-                                <option value="">Todos</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <label for="filter-unidade">Unidade de Tamanho</label>
-                            <select id="filter-unidade" class="filter-select" onchange="applyFilters()">
-                                <option value="">Todas</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <label for="filter-cor">Cor/Base</label>
-                            <select id="filter-cor" class="filter-select" onchange="applyFilters()">
-                                <option value="">Todas</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <label>Faixa de Preço (R$)</label>
-                            <div class="price-range">
-                                <input type="number" id="filter-price-min" class="filter-price" placeholder="Mín" min="0" oninput="applyFilters()">
-                                <input type="number" id="filter-price-max" class="filter-price" placeholder="Máx" min="0" oninput="applyFilters()">
-                            </div>
-                        </div>
-                        <button id="clear-filters">Limpar</button>
+                <div class="filter-group">
+                    <label for="filter-acabamento">Acabamento</label>
+                    <select id="filter-acabamento" class="filter-select" onchange="applyFilters()">
+                        <option value="">Todos</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-unidade">Unidade de Tamanho</label>
+                    <select id="filter-unidade" class="filter-select" onchange="applyFilters()">
+                        <option value="">Todas</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-cor">Cor/Base</label>
+                    <select id="filter-cor" class="filter-select" onchange="applyFilters()">
+                        <option value="">Todas</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Faixa de Preço (R$)</label>
+                    <div class="price-range">
+                        <input type="number" id="filter-price-min" class="filter-price" placeholder="Mín" min="0" oninput="applyFilters()">
+                        <input type="number" id="filter-price-max" class="filter-price" placeholder="Máx" min="0" oninput="applyFilters()">
                     </div>
-                </aside>
-                <div class="cell medium-9 products-container">
-                    <table class="paints-table unstriped">
-                        <thead class="paints-table-head">
-                            <tr>
-                                <th class="paints-table-head-cell">Marca</th>
-                                <th class="paints-table-head-cell">Descrição</th>
-                                <th class="paints-table-head-cell">Acabamento</th>
-                                <th class="paints-table-head-cell">Unidade</th>
-                                <th class="paints-table-head-cell">Cor/Base</th>
-                                <th class="paints-table-head-cell">Valor (R$)</th>
-                            </tr>
-                        </thead>
-                        <tbody id="paintsBody" class="paints-table-body"></tbody>
-                    </table>
                 </div>
+                <button id="clear-filters">Limpar</button>
             </div>
-        </section>
+        </aside>
+        <div class="cell medium-9 products-container">
+            <div class="grid-x grid-margin-x small-up-1 medium-up-2 large-up-3" id="paintsBody">
+            </div>
+        </div>
+    </div>
+</section>
     </main>
     <footer>
         <div class="grid-x grid-padding-x align-center">

@@ -203,25 +203,76 @@ function applyFilters() {
 }
 
 function displayPaints(paints) {
-    const tbody = document.getElementById('paintsBody');
-    if (!tbody) {
+    const paintsBody = document.getElementById('paintsBody');
+    if (!paintsBody) {
         console.error('Elemento #paintsBody não encontrado no DOM.');
         return;
     }
     console.log('Exibindo produtos:', paints);
-    tbody.innerHTML = '';
+    paintsBody.innerHTML = '';
+
     paints.forEach(paint => {
-        const row = document.createElement('tr');
-        row.className = 'paints-table-body-row';
-        row.innerHTML = `
-            <td class="paints-table-body-cell" data-label="Marca">${paint.marca}</td>
-            <td class="paints-table-body-cell" data-label="Descrição">${paint.descricao}</td>
-            <td class="paints-table-body-cell" data-label="Acabamento">${paint.acabamento}</td>
-            <td class="paints-table-body-cell" data-label="Unidade">${paint.unidade_tamanho}</td>
-            <td class="paints-table-body-cell" data-label="Cor/Base">${paint.cor_base}</td>
-            <td class="paints-table-body-cell" data-label="Valor (R$)">${paint.valor.toFixed(2)}</td>
+        const card = document.createElement('div');
+        card.className = 'cell';
+        card.innerHTML = `
+            <div class="card">
+                <div class="card-divider">
+                    <h4>${paint.marca}</h4>
+                </div>
+                <div class="card-image">
+                  <img src="${paint.image}" alt="${paint.descricao}">
+                </div>
+                <div class="card-section">
+                    <p><strong>Descrição:</strong> ${paint.descricao}</p>
+                    <p><strong>Acabamento:</strong> ${paint.acabamento}</p>
+                    <p><strong>Unidade:</strong> ${paint.unidade_tamanho}</p>
+                    <p><strong>Cor/Base:</strong> ${paint.cor_base}</p>
+                    <p><strong>Valor:</strong> R$ ${paint.valor.toFixed(2)}</p>
+                </div>
+            </div>
         `;
-        tbody.appendChild(row);
+        paintsBody.appendChild(card);
+    });
+}
+
+
+function popularFiltros() {
+    const marcaSelect = document.getElementById('filter-marca');
+    const acabamentoSelect = document.getElementById('filter-acabamento');
+    const unidadeSelect = document.getElementById('filter-unidade');
+    const corSelect = document.getElementById('filter-cor');
+
+    const marcas = [...new Set(window.paintsData.map(paint => paint.marca))];
+    const acabamentos = [...new Set(window.paintsData.map(paint => paint.acabamento))];
+    const unidades = [...new Set(window.paintsData.map(paint => paint.unidade_tamanho))];
+    const cores = [...new Set(window.paintsData.map(paint => paint.cor_base))];
+
+    marcas.forEach(marca => {
+        const option = document.createElement('option');
+        option.value = marca;
+        option.textContent = marca;
+        marcaSelect.appendChild(option);
+    });
+
+    acabamentos.forEach(acabamento => {
+        const option = document.createElement('option');
+        option.value = acabamento;
+        option.textContent = acabamento;
+        acabamentoSelect.appendChild(option);
+    });
+
+    unidades.forEach(unidade => {
+        const option = document.createElement('option');
+        option.value = unidade;
+        option.textContent = unidade;
+        unidadeSelect.appendChild(option);
+    });
+
+    cores.forEach(cor => {
+        const option = document.createElement('option');
+        option.value = cor;
+        option.textContent = cor;
+        corSelect.appendChild(option);
     });
 }
 
@@ -245,6 +296,15 @@ function resetFilters() {
     applyFilters();
 }
 
-document.getElementById('clear-filters').addEventListener('click', () => {
-    resetFilters();
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.paintsData) {
+        popularFiltros();
+        applyFilters();
+    } else {
+        console.error('paintsData não está definido. Verifique o carregamento do JSON.');
+    }
+
+    document.getElementById('clear-filters').addEventListener('click', () => {
+        resetFilters();
+    });
 });
