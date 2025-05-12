@@ -123,13 +123,13 @@ footer i {
 
 .login-container {
     display: flex;
-    flex-direction: row; /* Garante layout horizontal */
+    flex-direction: row;
     height: 100%;
     width: 100%;
 }
 
 .background-image {
-    flex: 0 0 70%; /* 60% da tela */
+    flex: 0 0 70%;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -145,12 +145,12 @@ footer i {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Mantém a proporção da imagem */
-    z-index: -1; /* Coloca a imagem atrás do conteúdo */
+    object-fit: cover;
+    z-index: -1;
 }
 
 .login {
-    flex: 0 0 30%; /* 40% da tela */
+    flex: 0 0 30%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -163,7 +163,7 @@ footer i {
     max-width: 350px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 5px;
 }
 
 .login label {
@@ -192,7 +192,7 @@ footer i {
 
 .esqueceu-senha a {
     text-decoration: underline;
-    color: #1779ba;
+    color: orange;
     font-size: 12px;
 }
 
@@ -238,18 +238,24 @@ footer i {
     transform: scale(1.2);
 }
 
-.cadastrar-se {
+.cadastre-se {
     font-size: 12px;
     text-align: center;
     color: #1779ba;
     text-decoration: underline;
 }
 
-.cadastrar-se a:visited {
+.cadastre-se a{
+    text-decoration: underline;
+    color: orange;
+    font-size: 12px;
+}
+
+
+.cadastre-se a:visited {
     color: purple;
 }
 
-/* Responsividade */
 @media (max-width: 992px) {
     .login-container {
         flex-direction: column;
@@ -278,72 +284,246 @@ footer i {
 form[action="/login"] {
     background-color: white;
     border-radius: 10px;
-    padding: 10%;
-    width: 60%; /* ou ajuste para 70%, 80%, etc., conforme necessário */
-    max-width: 600px; /* opcional: limita a largura máxima */
-    margin: 0 auto; /* centraliza o form horizontalmente */
+    padding: 7%;
+    width: 70%;
+    max-width: 600px; 
+    margin: 0 auto; 
 }
 
-.produtos-section {
+
+.cadastre-se-page {
+    background-color: #F5F5F5;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.cadastre-se-container {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    max-width: 800px;
+    min-height: 400px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 0;
+}
+
+.cadastre-se-form {
+    flex: 0 0 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
     padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
-.produtos-section-title {
+.cadastre-se-form form {
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.cadastre-se-form h2 {
+    color: orange;
     text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 30px;
     margin-bottom: 20px;
-}
-
-#search-bar {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.paints-table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-}
-
-.paints-table-head {
-    background-color: #e6e6e6;
-}
-
-.paints-table-head-cell {
-    padding: 12px;
-    text-align: left;
     font-weight: bold;
 }
 
-.paints-table-body-row:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.paints-table-body-row:hover {
-    background-color: #f0f0f0;
-}
-
-.paints-table-body-cell {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-#clear-filters {
-    width: 100%;
+.cadastre-se-form input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
     padding: 10px;
-    background-color: #e6e6e6;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-align: center;
-    font-size: 16px;
+    margin-bottom: 10px;
 }
 
-#clear-filters:hover {
-    background-color: #d0d0d0;
+.cadastre-se-form input:focus {
+    outline: 1px solid #333;
+    border: 1px solid #333;
 }
-  
+
+.button-cadastre-se {
+    border-radius: 20px;
+    color: #fff;
+    background-color: orange;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    border: none;
+}
+
+.button-cadastre-se:hover {
+    background-color: orange;
+    transform: scale(1.05);
+}
+
+.tenho-conta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: orange;
+    color: #fff;
+    text-align: center;
+    padding: 50px;
+    border-radius: 0 10px 10px 0;
+    width: 100%;
+    gap: 15px;
+}
+
+
+.tenho-conta h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: white;
+}
+
+.tenho-conta h2 {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.tenho-conta button.tenho-conta {
+    border-radius: 20px;
+    color: orange;
+    background-color: white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    border: none;
+}
+
+.tenho-conta button.tenho-conta:hover {
+    background-color: white;
+    color: orange;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .cadastre-se-container {
+        flex-direction: column;
+        width: 90%;
+        max-width: 400px;
+        min-height: 500px;
+    }
+    .cadastre-se-form {
+        flex: 0 0 50%;
+    }
+    .tenho-conta {
+        flex: 0 0 50%;
+        border-radius: 0 0 10px 10px;
+    }
+}
+
+.body-esqueceu {
+    background-color: #F5F5F5;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.esqueceu-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.esqueceu-container h2 {
+    color: orange;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.esqueceu-container p {
+    color: #333;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.esqueceu-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.esqueceu-container input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.esqueceu-container input:focus {
+    outline: 1px solid #333;
+    border: 1px solid #333;
+}
+
+.button-esqueceu button {
+    border-radius: 20px;
+    color: #fff;
+    background-color: orange;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    border: none;
+    width: 100%;
+}
+
+.button-esqueceu button:hover {
+    background-color: orange;
+    transform: scale(1.05);
+}
+
+.esqueceu-container a {
+    color: orange;
+    font-size: 14px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.esqueceu-container a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .esqueceu-container {
+        width: 90%;
+        padding: 20px;
+    }
+}
