@@ -524,8 +524,7 @@ form[action="/login"] {
         width: 90%;
         padding: 20px;
     }
-}
-=======
+
 .produtos-section {
     padding: 20px;
     max-width: 1200px;
@@ -587,4 +586,5 @@ form[action="/login"] {
 
 #clear-filters:hover {
     background-color: #d0d0d0;
+}
 }
