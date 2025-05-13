@@ -12,7 +12,7 @@
     <header>
         <img class="logo" src="./images/Logo.png">
         <nav class="text-center">
-            <ul class="menu align-center">
+             <ul class="menu align-center">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="produtos.html">Produtos</a></li>
                 <li><a href="cores.html">Cores</a></li>
@@ -20,6 +20,12 @@
                 <li><a href="sobre.html">Sobre Nós</a></li>
             </ul>
         </nav>
+         <div class="grid-x">
+            <img class="avatar" src="./images/avatar.png">
+            <div class="btnEC">
+                <a class="button tiny expanded secondary" href="login.html">Entrar</a>
+                <a class="button tiny expanded secondary" href="cadastrar-se.html">Cadastrar-se</a>
+            </div>
     </header>
     <main class="grid-container">
       <div class="grid-x grid-margin-x" style="min-height: 400px;">
@@ -56,13 +62,34 @@
                 <li onclick="mostrarDica(this)" data-dica="Tinta antiderrapante aumenta a segurança em pisos molhados.">Antiderrapante</li>
               </ul>
             </div>
-
-
     
-            <!-- Outras categorias aqui -->
+            <div class="opcoes" id="madeira" style="display: none;">
+  <h5>Opções para Madeira:</h5>
+  <ul>
+    <li onclick="mostrarDica(this)" data-dica="Use stain para manter o aspecto natural da madeira.">Stain</li>
+    <li onclick="mostrarDica(this)" data-dica="Verniz protege e dá brilho à madeira interna e externa.">Verniz</li>
+    <li onclick="mostrarDica(this)" data-dica="Tinta esmalte é ideal para acabamento resistente.">Tinta esmalte</li>
+    <li onclick="mostrarDica(this)" data-dica="Aplicar seladora antes da tinta melhora a durabilidade.">Seladora</li>
+  </ul>
+</div>
 
+<div class="opcoes" id="metal" style="display: none;">
+  <h5>Opções para Metal:</h5>
+  <ul>
+    <li onclick="mostrarDica(this)" data-dica="Primário anticorrosivo é essencial para evitar ferrugem.">Primer anticorrosivo</li>
+    <li onclick="mostrarDica(this)" data-dica="Tinta esmalte sintético oferece ótimo acabamento para metais.">Esmalte sintético</li>
+    <li onclick="mostrarDica(this)" data-dica="Sempre lixe bem a superfície metálica antes de pintar.">Preparação</li>
+  </ul>
+</div>
 
-    
+<div class="opcoes" id="vedacao" style="display: none;">
+  <h5>Opções para Vedação:</h5>
+  <ul>
+    <li onclick="mostrarDica(this)" data-dica="Impermeabilizantes evitam infiltrações em áreas molhadas.">Impermeabilizante</li>
+    <li onclick="mostrarDica(this)" data-dica="Use silicone ou PU para vedação de frestas e juntas.">Selante</li>
+    <li onclick="mostrarDica(this)" data-dica="Vedação adequada evita problemas estruturais a longo prazo.">Boa prática</li>
+  </ul>
+</div>
             <div id="dica" class="callout success" data-closable style="display: none;">
               <span id="dica-texto"></span>
               <button class="close-button" aria-label="Fechar dica" type="button" data-close onclick="fecharDica()">
