@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D'art - Cadastre-se</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="cadastre-se-page">
+    <main class="cadastre-se-container">
+        <section class="cadastre-se-form">
+            <form method="post" action="/cadastre-se">
+                <h2>Crie sua conta</h2>
+                <input type="email" id="e-mail" name="e-mail" placeholder="e-mail" required>
+                <input type="password" id="password" name="password" placeholder="senha" required>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="confirmar senha" require>
+                <button type="submit" class="button-cadastre-se" formaction="login.html">Cadastrar</button>
+            </form>
+        </section>
+        <section class="tenho-conta">
+            <h1>Bem-vindo de volta</h1>
+            <h2>Acesse sua conta agora</h2>
+            <button type="button" class="tenho-conta" onclick="window.location.href='login.html'">Entrar</button>
+        </section>
+      
+    </main>
+  
+</body>
+</html>
