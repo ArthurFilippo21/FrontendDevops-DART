@@ -1,11 +1,9 @@
-# Normalizar arquivos de texto para LF no repositório
-* text=auto eol=lf
 
-# Garantir que arquivos JSON usem LF
+text=auto eol=lf
+
 *.json text eol=lf
 
-# Arquivos binários não devem ser alterados
-*.png binary
-*.jpg binary
-*.jpeg binary
+*.png binary 
+*.jpg binary 
+*.jpeg binary 
 *.gif binary
