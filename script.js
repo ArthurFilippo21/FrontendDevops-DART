@@ -5,95 +5,108 @@ const perPage = 12;
 const keywords = ['green', 'blue', 'yellow', 'red', 'orange', 'pink', 'purple', 'brown', 'gray', 'white', 'black'];
 
 async function loadAllColors() {
-  currentPage = 0;
-  allColors = [];
-
-  const fetches = keywords.map(async (keyword) => {
-    const apiURL = `https://colormagic.app/api/palette/search?q=${keyword}`;
-    const proxyURL = `https://api.allorigins.win/get?url=${encodeURIComponent(apiURL)}`;
-
-    try {
-      const response = await fetch(proxyURL);
-      const result = await response.json();
-      const palettes = JSON.parse(result.contents);
-      const colors = palettes.flatMap(p =>
-        p.colors.map(color => ({ color }))
-      );
-      allColors.push(...colors);
-    } catch (err) {
-      console.warn(`Erro ao carregar cores para "${keyword}":`, err);
+    if (!document.getElementById('color-display1') && !document.getElementById('color-display2')) {
+        return;
     }
-  });
+    currentPage = 0;
+    allColors = [];
 
-  await Promise.all(fetches);
-  showPage();
-  showPage2();
+    const fetches = keywords.map(async (keyword) => {
+        const apiURL = `https://colormagic.app/api/palette/search?q=${keyword}`;
+        const proxyURL = `https://api.allorigins.win/get?url=${encodeURIComponent(apiURL)}`;
+
+        try {
+            const response = await fetch(proxyURL);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const result = await response.json();
+            const palettes = JSON.parse(result.contents);
+            const colors = palettes.flatMap(p =>
+                p.colors.map(color => ({ color }))
+            );
+            allColors.push(...colors);
+        } catch (err) {
+            console.warn(`Erro ao carregar cores para "${keyword}":`, err);
+            // Fallback: usar cores predefinidas
+            const fallbackColors = [
+                '#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF',
+                '#00FFFF', '#800000', '#008000', '#000080', '#808000',
+                '#800080', '#008080'
+            ].map(color => ({ color }));
+            allColors.push(...fallbackColors);
+        }
+    });
+
+    await Promise.all(fetches);
+    showPage();
+    showPage2();
 }
 
 function showPage() {
-  const container = document.getElementById('color-display1');
-  container.innerHTML = '';
-  const start = currentPage * perPage;
-  const pageColors = allColors.slice(start, start + perPage);
+    const container = document.getElementById('color-display1');
+    if (!container) return;
+    container.innerHTML = '';
+    const start = currentPage * perPage;
+    const pageColors = allColors.slice(start, start + perPage);
 
-  pageColors.forEach(({ color }) => {
-    const box = document.createElement('div');
-    box.className = 'color-box';
-    box.style.backgroundColor = color;
-    box.title = color;
-    box.innerText = color;
-    box.onclick = () => {
-      document.getElementById("sala1").style.backgroundColor = color;
-    };
-    container.appendChild(box);
-  });
+    pageColors.forEach(({ color }) => {
+        const box = document.createElement('div');
+        box.className = 'color-box';
+        box.style.backgroundColor = color;
+        box.title = color;
+        box.innerText = color;
+        box.onclick = () => {
+            document.getElementById("sala1").style.backgroundColor = color;
+        };
+        container.appendChild(box);
+    });
 }
 
 function showPage2() {
-  const container = document.getElementById('color-display2');
-  container.innerHTML = '';
-  const start = currentPage * perPage;
-  const pageColors = allColors.slice(start, start + perPage);
+    const container = document.getElementById('color-display2');
+    if (!container) return;
+    container.innerHTML = '';
+    const start = currentPage * perPage;
+    const pageColors = allColors.slice(start, start + perPage);
 
-  pageColors.forEach(({ color }) => {
-    const box = document.createElement('div');
-    box.className = 'color-box';
-    box.style.backgroundColor = color;
-    box.title = color;
-    box.innerText = color;
-    box.onclick = () => {
-      document.getElementById("sala2").style.backgroundColor = color;
-    };
-    container.appendChild(box);
-  });
+    pageColors.forEach(({ color }) => {
+        const box = document.createElement('div');
+        box.className = 'color-box';
+        box.style.backgroundColor = color;
+        box.title = color;
+        box.innerText = color;
+        box.onclick = () => {
+            document.getElementById("sala2").style.backgroundColor = color;
+        };
+        container.appendChild(box);
+    });
 }
 
 function nextPage1() {
-  if ((currentPage + 1) * perPage < allColors.length) {
-    currentPage++;
-    showPage();
-  }
+    if ((currentPage + 1) * perPage < allColors.length) {
+        currentPage++;
+        showPage();
+    }
 }
 
 function previousPage1() {
-  if (currentPage > 0) {
-    currentPage--;
-    showPage();
-  }
+    if (currentPage > 0) {
+        currentPage--;
+        showPage();
+    }
 }
 
 function nextPage2() {
-  if ((currentPage + 1) * perPage < allColors.length) {
-    currentPage++;
-    showPage2();
-  }
+    if ((currentPage + 1) * perPage < allColors.length) {
+        currentPage++;
+        showPage2();
+    }
 }
 
 function previousPage2() {
-  if (currentPage > 0) {
-    currentPage--;
-    showPage2();
-  }
+    if (currentPage > 0) {
+        currentPage--;
+        showPage2();
+    }
 }
 
 window.onload = loadAllColors;
@@ -106,14 +119,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     fetchPaints();
     setupFilterToggle();
-    resetFilters();
+    document.getElementById('clear-filters').addEventListener('click', () => {
+        resetFilters();
+    });
 });
 
 function fetchPaints() {
-    fetch('paints.json')
+    fetch('http://localhost:3000/api/tintas')
         .then(response => {
             if (!response.ok) {
-                throw new Error('Erro ao carregar paints.json: ' + response.status);
+                throw new Error('Erro ao carregar dados da API: ' + response.status);
             }
             return response.json();
         })
@@ -121,9 +136,10 @@ function fetchPaints() {
             console.log('Dados carregados:', data);
             window.paintsData = data;
             populateFilters(data);
+            popularFiltros();
             applyFilters();
         })
-        .catch(error => console.error('Erro ao carregar paints.json:', error));
+        .catch(error => console.error('Erro ao carregar dados da API:', error));
 }
 
 function populateFilters(data) {
@@ -172,13 +188,15 @@ function setupFilterToggle() {
         toggleButton.addEventListener('click', () => {
             filtersContent.classList.toggle('active');
         });
-    } else {
-        console.warn('Elementos toggle-filters ou filters-content não encontrados.');
     }
 }
 
 function applyFilters() {
     console.log('Aplicando filtros');
+    if (!window.paintsData) {
+        console.warn('paintsData não está definido. Aguardando carregamento.');
+        return;
+    }
     const searchTerm = document.getElementById('search-bar').value.toUpperCase();
     const marcaFilter = document.getElementById('filter-marca').value;
     const acabamentoFilter = document.getElementById('filter-acabamento').value;
@@ -220,59 +238,18 @@ function displayPaints(paints) {
                     <h4>${paint.marca}</h4>
                 </div>
                 <div class="card-image">
-                  <img src="${paint.image}" alt="${paint.descricao}">
+                    <img src="${paint.image || ''}" alt="${paint.descricao}">
                 </div>
                 <div class="card-section">
                     <p><strong>Descrição:</strong> ${paint.descricao}</p>
                     <p><strong>Acabamento:</strong> ${paint.acabamento}</p>
                     <p><strong>Unidade:</strong> ${paint.unidade_tamanho}</p>
                     <p><strong>Cor/Base:</strong> ${paint.cor_base}</p>
-                    <p><strong>Valor:</strong> R$ ${paint.valor.toFixed(2)}</p>
+                    <p><strong>Valor:</strong> R$ ${parseFloat(paint.valor).toFixed(2)}</p>
                 </div>
             </div>
         `;
         paintsBody.appendChild(card);
-    });
-}
-
-
-function popularFiltros() {
-    const marcaSelect = document.getElementById('filter-marca');
-    const acabamentoSelect = document.getElementById('filter-acabamento');
-    const unidadeSelect = document.getElementById('filter-unidade');
-    const corSelect = document.getElementById('filter-cor');
-
-    const marcas = [...new Set(window.paintsData.map(paint => paint.marca))];
-    const acabamentos = [...new Set(window.paintsData.map(paint => paint.acabamento))];
-    const unidades = [...new Set(window.paintsData.map(paint => paint.unidade_tamanho))];
-    const cores = [...new Set(window.paintsData.map(paint => paint.cor_base))];
-
-    marcas.forEach(marca => {
-        const option = document.createElement('option');
-        option.value = marca;
-        option.textContent = marca;
-        marcaSelect.appendChild(option);
-    });
-
-    acabamentos.forEach(acabamento => {
-        const option = document.createElement('option');
-        option.value = acabamento;
-        option.textContent = acabamento;
-        acabamentoSelect.appendChild(option);
-    });
-
-    unidades.forEach(unidade => {
-        const option = document.createElement('option');
-        option.value = unidade;
-        option.textContent = unidade;
-        unidadeSelect.appendChild(option);
-    });
-
-    cores.forEach(cor => {
-        const option = document.createElement('option');
-        option.value = cor;
-        option.textContent = cor;
-        corSelect.appendChild(option);
     });
 }
 
@@ -295,16 +272,3 @@ function resetFilters() {
 
     applyFilters();
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    if (window.paintsData) {
-        popularFiltros();
-        applyFilters();
-    } else {
-        console.error('paintsData não está definido. Verifique o carregamento do JSON.');
-    }
-
-    document.getElementById('clear-filters').addEventListener('click', () => {
-        resetFilters();
-    });
-});
